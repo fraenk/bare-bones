@@ -14,65 +14,61 @@
 
 <?php get_header(); ?>
 
-			<div id="content">
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-				<div id="inner-content" class="wrap cf">
+    <div>
 
-					<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+        <?php get_template_part( 'template-parts/site-header' );  ?>
 
-						<h1 class="archive-title h2"><?php post_type_archive_title(); ?></h1>
+        <div>
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <div>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+                    <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
 
-								<header class="article-header">
+                        <h1>
+                             <?php if (is_category()) { ?>
+                                <span><?php _e( 'Posts Categorized:', 'barebonestheme' ); ?></span> <?php single_cat_title(); ?>
+                             <?php } elseif (is_tag()) { ?>
+                                <span><?php _e( 'Posts Tagged:', 'barebonestheme' ); ?></span> <?php single_tag_title(); ?>
+                             <?php } elseif (is_author()) {
+                                global $post;
+                                $author_id = $post->post_author;
+                             ?>
+                                <span><?php _e( 'Posts By:', 'barebonestheme' ); ?></span> <?php the_author_meta('display_name', $author_id); ?>
+                             <?php } elseif (is_day()) { ?>
+                                <span><?php _e( 'Daily Archives:', 'barebonestheme' ); ?></span> <?php the_time('l, F j, Y'); ?>
+                             <?php } elseif (is_month()) { ?>
+                                <span><?php _e( 'Monthly Archives:', 'barebonestheme' ); ?></span> <?php the_time('F Y'); ?>
+                             <?php } elseif (is_year()) { ?>
+                                <span><?php _e( 'Yearly Archives:', 'barebonestheme' ); ?></span> <?php the_time('Y'); ?>
+                             <?php } ?>
+                        </h1>
 
-									<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-									<p class="byline vcard"><?php
-										printf( __( 'Posted <time class="updated" datetime="%1$s" itemprop="datePublished">%2$s</time> by <span class="author">%3$s</span>', 'barebonestheme' ), get_the_time( 'Y-m-j' ), get_the_time( __( 'F jS, Y', 'barebonestheme' ) ), get_author_posts_url( get_the_author_meta( 'ID' ) ));
-									?></p>
+                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                            
+                            <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
 
-								</header>
+                        <?php endwhile; ?>
 
-								<section class="entry-content cf">
+                            <?php barebones_page_navi(); ?>
 
-									<?php the_excerpt(); ?>
+                        <?php else : ?>
 
-								</section>
+                            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-								<footer class="article-footer">
+                        <?php endif; ?>
 
-								</footer>
+                    </main>
 
-							</article>
+                <?php get_sidebar(); ?>
 
-							<?php endwhile; ?>
+            </div>
 
-									<?php barebones_page_navi(); ?>
+        </div>
 
-							<?php else : ?>
+        <?php get_footer(); ?>
+        
+    <?php // div closed in footer.php ?>
 
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Oops, Post Not Found!', 'barebonestheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'barebonestheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the custom posty type archive template.', 'barebonestheme' ); ?></p>
-										</footer>
-									</article>
-
-							<?php endif; ?>
-
-						</main>
-
-					<?php get_sidebar(); ?>
-
-				</div>
-
-			</div>
-
-<?php get_footer(); ?>
+<?php // div closed in footer.php ?>

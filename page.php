@@ -1,27 +1,37 @@
 <?php get_header(); ?>
 
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+
+    <div>
+
+        <?php get_template_part( 'template-parts/site-header' );  ?>
+
+		<div>
+
 			<div>
 
-				<div>
+					<main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
 
-						<main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
+						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+						    <?php get_template_part( 'template-parts/page-content' );  ?>
 
-							    <?php get_template_part( 'template-parts/page-content' );  ?>
+						<?php endwhile; else : ?>
 
-							<?php endwhile; else : ?>
+							<?php get_template_part( 'template-parts/missing-content' );  ?>
 
-								<?php get_template_part( 'template-parts/missing-content' );  ?>
+						<?php endif; ?>
 
-							<?php endif; ?>
+					</main>
 
-						</main>
-
-						<?php get_sidebar(); ?>
-
-				</div>
+					<?php get_sidebar(); ?>
 
 			</div>
 
-<?php get_footer(); ?>
+		</div>
+
+        <?php get_footer(); ?>
+        
+    <?php // div closed in footer.php ?>
+
+<?php // div closed in footer.php ?>

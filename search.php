@@ -1,74 +1,43 @@
 <?php get_header(); ?>
 
-			<div id="content">
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-				<div id="inner-content" class="wrap cf">
+    <div>
 
-					<main id="main" class="m-all t-2of3 d-5of7 cf" role="main">
-						<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'barebonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
+        <?php get_template_part( 'template-parts/site-header' );  ?>
 
-						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <div>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
+            <div>
 
-								<header class="entry-header article-header">
+                <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+				    
+					<h1><span><?php _e( 'Search Results for:', 'barebonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-									<h3 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+				        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                            
+                            <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
 
-                  						<p class="byline entry-meta vcard">
-                    							<?php printf( __( 'Posted %1$s by %2$s', 'barebonestheme' ),
-                   							    /* the time the post was published */
-                   							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-                      							    /* the author of the post */
-                       							    '<span class="by">by</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
-                    							); ?>
-                  						</p>
+                        <?php endwhile; ?>
 
-								</header>
+                            <?php barebones_page_navi(); ?>
 
-								<section class="entry-content">
-										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'barebonestheme' ) . '</span>' ); ?>
+                        <?php else : ?>
 
-								</section>
+                            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-								<footer class="article-footer">
+                        <?php endif; ?>
 
-									<?php if(get_the_category_list(', ') != ''): ?>
-                  					<?php printf( __( 'Filed under: %1$s', 'barebonestheme' ), get_the_category_list(', ') ); ?>
-                  					<?php endif; ?>
+					</main>
 
-                 					<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'barebonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+						<?php get_sidebar(); ?>
 
-								</footer> <!-- end article footer -->
+				</div>
 
-							</article>
+		</div>
 
-						<?php endwhile; ?>
+        <?php get_footer(); ?>
+        
+    <?php // div closed in footer.php ?>
 
-								<?php barebones_page_navi(); ?>
-
-							<?php else : ?>
-
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Sorry, No Results.', 'barebonestheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Try your search again.', 'barebonestheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the search.php template.', 'barebonestheme' ); ?></p>
-										</footer>
-									</article>
-
-							<?php endif; ?>
-
-						</main>
-
-							<?php get_sidebar(); ?>
-
-					</div>
-
-			</div>
-
-<?php get_footer(); ?>
+<?php // div closed in footer.php ?>
