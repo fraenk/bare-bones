@@ -1,0 +1,70 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: TinyMCE Editor
+
+This stylesheet is loaded automatically by Wordpress when compiled
+and placed in the root theme directory folder as editor-style.css
+
+For more info, check out the codex:
+http://codex.wordpress.org/Editor_Style
+
+******************************************************************/
+
+/* Wrap the entire post style inside the TinyMCE selector, as suggested
+here http://codex.wordpress.org/Function_Reference/add_editor_style */
+body#tinymce.wp-editor {
+
+	// normalize: http://necolas.github.io/normalize.css/
+	@import "partials/normalize";
+
+	// Sass variables
+	@import "partials/variables";
+
+	// typography
+	@import "partials/typography";
+
+	// Sass functions
+	@import "partials/functions";
+
+	// import mixins
+	@import "partials/mixins";
+
+	width: 731px;
+	font-family: $custom-font;
+	font-size: 100%;
+	line-height: 1.5;
+	color: $text-color;
+  -webkit-font-smoothing: antialiased;
+
+  /*********************
+	LINK STYLES
+	*********************/
+
+	a, a:visited {
+		color: $link-color;
+
+		/* on hover */
+		&:hover, &:focus {
+			color: $link-hover;
+		}
+
+		/* on click */
+		&:active {
+
+		}
+
+		&:link {
+
+			-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+		}
+	}
+
+	/******************************************************************
+	H1, H2, H3, H4, H5 STYLES
+	******************************************************************/
+
+	
+}
+
