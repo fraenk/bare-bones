@@ -14,11 +14,11 @@
 */
   ?>
 
-   <article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+   <article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 
     <header>
 
-        <h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+        <h1 itemprop="headline"><a itemprop="url" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
         <p>
                     <?php printf( __( 'Posted %1$s by %2$s', 'barebonestheme' ),
                         /* the time the post was published */
@@ -30,21 +30,18 @@
 
     </header>
 
-    <section>
+    <section itemprop="articleBody">
         <?php the_content(); ?>
     </section>
 
     <footer>
-        <p>
-            <?php comments_number( __( '<span>No</span> Comments', 'barebonestheme' ), __( '<span>One</span> Comment', 'barebonestheme' ), __( '<span>%</span> Comments', 'barebonestheme' ) );?>
-        </p>
-
 
         <?php printf( '<p>' . __('filed under', 'barebonestheme' ) . ': %1$s</p>' , get_the_category_list(', ') ); ?>
 
-        <?php the_tags( '<p><span>' . __( 'Tags:', 'barebonestheme' ) . '</span> ', ', ', '</p>' ); ?>
-
+        <?php the_tags( '<p>' . __( 'Tags:', 'barebonestheme' ) . ' <span itemprop="keywords">', ', ', '</span></p>' ); ?>
 
     </footer>
+    
+    <?php comments_template(); ?>
 
 </article>

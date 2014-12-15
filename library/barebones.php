@@ -5,8 +5,10 @@ main functions & features reside. If you have
 any custom functions, it's best to put them
 in the functions.php file.
 
-Developed by: Eddie Machado
-URL: http://themble.com/barebones/
+Developed by: Frank Walter
+URL: http://frankwalter.net
+ 
+based on Bones by Eddie Machado
 
   - head cleanup (remove rsd, uri links, junk css, ect)
   - enqueueing scripts & styles
@@ -35,15 +37,15 @@ function barebones_head_cleanup() {
 	// post and comment feeds
 	// remove_action( 'wp_head', 'feed_links', 2 );
 	// EditURI link
-	remove_action( 'wp_head', 'rsd_link' );
+	//remove_action( 'wp_head', 'rsd_link' );
 	// windows live writer
-	remove_action( 'wp_head', 'wlwmanifest_link' );
+	//remove_action( 'wp_head', 'wlwmanifest_link' );
 	// previous link
-	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+	//remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
 	// start link
-	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+	//remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
 	// links for adjacent posts
-	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+	//remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 	// WP version
 	remove_action( 'wp_head', 'wp_generator' );
 	// remove WP version from css
@@ -52,6 +54,44 @@ function barebones_head_cleanup() {
 	add_filter( 'script_loader_src', 'barebones_remove_wp_ver_css_js', 9999 );
 
 } /* end barebones head cleanup */
+
+/*********************
+REMOVE WP BLOAT
+*********************/
+
+// remove WP version from RSS
+function barebones_rss_version() { return ''; }
+
+// remove WP version from scripts
+function barebones_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+
+// remove injected CSS for recent comments widget
+function barebones_remove_wp_widget_recent_comments_style() {
+    if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
+        remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
+    }
+}
+
+// remove injected CSS from recent comments widget
+function barebones_remove_recent_comments_style() {
+    global $wp_widget_factory;
+    if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
+        remove_action( 'wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style') );
+    }
+}
+
+// remove injected CSS from gallery
+function barebones_gallery_style($css) {
+    return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
+}
+
+/*********************
+IMPROVE WP FUNCTIONS
+*********************/
 
 // A better title
 // http://www.deluxeblogtips.com/2012/03/better-title-meta-tag.html
@@ -84,37 +124,6 @@ function rw_title( $title, $sep, $seplocation ) {
 
 } // end better title
 
-// remove WP version from RSS
-function barebones_rss_version() { return ''; }
-
-// remove WP version from scripts
-function barebones_remove_wp_ver_css_js( $src ) {
-	if ( strpos( $src, 'ver=' ) )
-		$src = remove_query_arg( 'ver', $src );
-	return $src;
-}
-
-// remove injected CSS for recent comments widget
-function barebones_remove_wp_widget_recent_comments_style() {
-	if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
-		remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
-	}
-}
-
-// remove injected CSS from recent comments widget
-function barebones_remove_recent_comments_style() {
-	global $wp_widget_factory;
-	if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
-		remove_action( 'wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style') );
-	}
-}
-
-// remove injected CSS from gallery
-function barebones_gallery_style($css) {
-	return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
-}
-
-
 /*********************
 SCRIPTS & ENQUEUEING
 *********************/
@@ -135,10 +144,10 @@ function barebones_scripts_and_styles() {
 		// ie-only style sheet
 		wp_register_style( 'barebones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
-    // comment reply script for threaded comments
-    if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
-		  wp_enqueue_script( 'comment-reply' );
-    }
+        // comment reply script for threaded comments
+        if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+    		  wp_enqueue_script( 'comment-reply' );
+        }
 
 		//adding scripts file in the footer
 		wp_register_script( 'barebones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
@@ -193,15 +202,15 @@ function barebones_theme_support() {
 	// adding post format support
 	add_theme_support( 'post-formats',
 		array(
-			'aside',             // title less blurb
-			'gallery',           // gallery of images
-			'link',              // quick link to other site
-			'image',             // an image
-			'quote',             // a quick quote
-			'status',            // a Facebook like status update
-			'video',             // video
-			'audio',             // audio
-			'chat'               // chat transcript
+			//'aside',             // title less blurb
+			//'gallery',           // gallery of images
+			//'link',              // quick link to other site
+			//'image',             // an image
+			//'quote',             // a quick quote
+			//'status',            // a Facebook like status update
+			//'video',             // video
+			//'audio',             // audio
+			//'chat'               // chat transcript
 		)
 	);
 

@@ -4,9 +4,15 @@
 
         <h1 itemprop="headline"><?php the_title(); ?></h1>
 
-        <p>
-            <?php printf( __( 'Posted <time datetime="%1$s" itemprop="datePublished">%2$s</time> by <span itemprop="author">%3$s</span>', 'barebonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
-        </p>
+        
+        <?php
+            /*
+             * pages are usually not so much concerned with author and publishing date...
+             * if you feel different about it, just uncomment the below.
+            */
+            //printf( __( '<p>Posted <time datetime="%1$s" itemprop="datePublished">%2$s</time> by <span itemprop="author">%3$s</span></p>', 'barebonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) ));
+        ?>
+        
 
     </header> <?php // end article header ?>
 
@@ -26,6 +32,8 @@
              *
              * http://gizmodo.com/5841121/google-wants-to-help-you-avoid-stupid-annoying-multiple-page-articles
              *
+             * it's left intact here on thepage-content template... because if you have a lengthy content page,
+             * you might just wanna use it ?! :P
             */
             wp_link_pages( array(
                 'before'      => '<div><span>' . __( 'Pages:', 'barebonestheme' ) . '</span>',
@@ -40,6 +48,12 @@
 
     </footer>
 
-    <?php comments_template(); ?>
+    <?php
+        /*
+         * pages are usually not so much concerned with user comments...
+         * if you feel different about it, just uncomment the below.
+        */
+        //comments_template(); 
+    ?>
 
 </article>

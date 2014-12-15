@@ -12,11 +12,13 @@ if ( post_password_required() ) {
 
 <?php // You can start editing here. ?>
 
+  <?php if ( comments_open() || have_comments() ) : ?>
+    <h3><?php comments_number( __( '<span><meta itemprop="commentCount" content="0" />No</span> Comments', 'barebonestheme' ), __( '<span><meta itemprop="commentCount" content="1" />One</span> Comment', 'barebonestheme' ), __( '<span itemprop="commentCount">%</span> Comments', 'barebonestheme' ) );?></h3>
+  <?php endif; ?>
+  
   <?php if ( have_comments() ) : ?>
 
-    <h3 id="comments-title" class="h2"><?php comments_number( __( '<span>No</span> Comments', 'barebonestheme' ), __( '<span>One</span> Comment', 'barebonestheme' ), __( '<span>%</span> Comments', 'barebonestheme' ) );?></h3>
-
-    <section class="commentlist">
+    <section>
       <?php
         wp_list_comments( array(
           'style'             => 'div',
@@ -34,14 +36,14 @@ if ( post_password_required() ) {
     </section>
 
     <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-    	<nav class="navigation comment-navigation" role="navigation">
-      	<div class="comment-nav-prev"><?php previous_comments_link( __( '&larr; Previous Comments', 'barebonestheme' ) ); ?></div>
-      	<div class="comment-nav-next"><?php next_comments_link( __( 'More Comments &rarr;', 'barebonestheme' ) ); ?></div>
+    	<nav role="navigation">
+      	<div><?php previous_comments_link( __( '&larr; Previous Comments', 'barebonestheme' ) ); ?></div>
+      	<div><?php next_comments_link( __( 'More Comments &rarr;', 'barebonestheme' ) ); ?></div>
     	</nav>
     <?php endif; ?>
 
     <?php if ( ! comments_open() ) : ?>
-    	<p class="no-comments"><?php _e( 'Comments are closed.' , 'barebonestheme' ); ?></p>
+    	<p><?php _e( 'Comments are closed.' , 'barebonestheme' ); ?></p>
     <?php endif; ?>
 
   <?php endif; ?>

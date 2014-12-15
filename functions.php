@@ -24,13 +24,13 @@ function barebones_ahoy() {
   //Allow editor style.
   add_editor_style();
 
-  // let's get language support going, if you need it
-  load_theme_textdomain( 'barebonestheme', get_template_directory() . '/library/translation' );
+  // let's get language support going, if you need it, uncomment below
+  //load_theme_textdomain( 'barebonestheme', get_template_directory() . '/library/translation' );
 
   // USE THIS TEMPLATE TO CREATE CUSTOM POST TYPES EASILY
   //require_once( 'library/custom-post-type.php' );
 
-  // launching operation cleanup
+  // launching operation cleanup (see library/barebones.php for details)
   add_action( 'init', 'barebones_head_cleanup' );
   // A better title
   add_filter( 'wp_title', 'rw_title', 10, 3 );
@@ -43,19 +43,19 @@ function barebones_ahoy() {
   // clean up gallery output in wp
   add_filter( 'gallery_style', 'barebones_gallery_style' );
 
-  // enqueue base scripts and styles
+  // enqueue base scripts and styles (see library/barebones.php for details)
   add_action( 'wp_enqueue_scripts', 'barebones_scripts_and_styles', 999 );
-  // ie conditional wrapper
 
-  // launching this stuff after theme setup
+  // launching this stuff after theme setup (see library/barebones.php for details)
   barebones_theme_support();
 
-  // adding sidebars to Wordpress (these are created in functions.php)
+  // adding sidebars to Wordpress (these are created further down in functions.php)
   add_action( 'widgets_init', 'barebones_register_sidebars' );
 
-  // cleaning up random code around images
+  // cleaning up random code around images (see library/barebones.php for details)
   add_filter( 'the_content', 'barebones_filter_ptags_on_images' );
-  // cleaning up excerpt
+  
+  // cleaning up excerpt (see library/barebones.php for details)
   add_filter( 'excerpt_more', 'barebones_excerpt_more' );
 
 } /* end barebones ahoy */
@@ -96,14 +96,14 @@ You can change the names and dimensions to whatever
 you like. Enjoy!
 */
 
-add_filter( 'image_size_names_choose', 'barebones_custom_image_sizes' );
-
 function barebones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
         //'barebones-thumb-600' => __('600px by 150px'),
         //'barebones-thumb-300' => __('300px by 100px'),
     ) );
 }
+
+add_filter( 'image_size_names_choose', 'barebones_custom_image_sizes' );
 
 /*
 The function above adds the ability to use the dropdown menu to select
