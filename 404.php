@@ -1,32 +1,38 @@
 <?php get_header(); ?>
 
-			<div id="content">
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-				<div id="inner-content" class="wrap cf">
+    <div>
 
-					<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+        <?php get_template_part( 'template-parts/site-header' );  ?>
 
-						<article id="post-not-found" class="hentry cf">
+        <div>
 
-							<header class="article-header">
+            <div>
+
+                    <main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
+
+						<article>
+
+							<header>
 
 								<h1><?php _e( 'Epic 404 - Article Not Found', 'barebonestheme' ); ?></h1>
 
 							</header>
 
-							<section class="entry-content">
+							<section>
 
 								<p><?php _e( 'The article you were looking for was not found, but maybe try looking again!', 'barebonestheme' ); ?></p>
 
 							</section>
 
-							<section class="search">
+							<section>
 
 									<p><?php get_search_form(); ?></p>
 
 							</section>
 
-							<footer class="article-footer">
+							<footer>
 
 									<p><?php _e( 'This is the 404.php template.', 'barebonestheme' ); ?></p>
 
@@ -36,8 +42,14 @@
 
 					</main>
 
-				</div>
+                    <?php get_sidebar(); ?>
 
-			</div>
+            </div>
 
-<?php get_footer(); ?>
+        </div>
+
+        <?php get_footer(); ?>
+        
+    <?php // div closed in footer.php ?>
+
+<?php // div closed in footer.php ?>

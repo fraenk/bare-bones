@@ -16,7 +16,7 @@
 
     </header> <?php // end article header ?>
 
-    <section>
+    <section itemprop="text">
         <?php
             // the content (pretty self explanatory huh)
             the_content();

@@ -14,7 +14,7 @@
 */
   ?>
 
-   <article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+   <article id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?> role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 
     <header>
 
@@ -32,6 +32,14 @@
 
     <section itemprop="articleBody">
         <?php the_content(); ?>
+        <?php
+            wp_link_pages( array(
+                'before'      => '<div><span>' . __( 'Pages:', 'barebonestheme' ) . '</span>',
+                'after'       => '</div>',
+                'link_before' => '<span>',
+                'link_after'  => '</span>',
+            ) );
+        ?>
     </section>
 
     <footer>

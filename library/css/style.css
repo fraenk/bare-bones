@@ -1131,9 +1131,6 @@ style a page via class
 /* paged items like search results or archives */
 /* individual paged (i.e. body.paged-3) */
 /*********************
-LAYOUT & GRID STYLES
-*********************/
-/*********************
 LINK STYLES
 *********************/
 a, a:visited {
@@ -1158,23 +1155,51 @@ a:link, a:visited:link {
 H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 /*********************
+LAYOUT & GRID STYLES
+*********************/
+/*********************
 HEADER STYLES
 *********************/
 /*********************
 NAVIGATION STYLES
 *********************/
 /*********************
-POSTS & CONTENT STYLES
+GENERAL CONTENT STYLES
 *********************/
-/******************************************************************
+main ul, main ol {
+  list-style-position: inside;
+}
+main ul ul, main ul ol, main ol ul, main ol ol {
+  padding-left: 1em;
+}
+main ul {
+  list-style-type: square;
+}
+main ul ul {
+  list-style-type: disc;
+}
+main ul ul ul {
+  list-style-type: circle;
+}
+main ol {
+  list-style-type: decimal;
+}
+main ol ol {
+  list-style-type: lower-latin;
+}
+main ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/*********************
 PAGE NAVI STYLES
-******************************************************************/
-/******************************************************************
+*********************/
+/*********************
 COMMENT STYLES
-******************************************************************/
-/******************************************************************
+*********************/
+/*********************
 COMMENT FORM STYLES
-******************************************************************/
+*********************/
 /*********************
 SIDEBARS & ASIDES
 *********************/
