@@ -216,7 +216,7 @@ function barebones_comments( $comment, $args, $depth ) {
           // we have set it to the default mystery man (mm)
           // see https://en.gravatar.com/site/implement/images/ for more
         ?>
-        <img data-gravatar="http://www.gravatar.com/avatar/<?php echo md5( $bgauthemail ); ?>?s=40&d=mm" height="40" width="40" src="<?php echo get_template_directory_uri(); ?>/library/images/nothing.gif" />
+        <img data-gravatar="http://www.gravatar.com/avatar/<?php echo md5( $bgauthemail ); ?>?s=32&d=mm" height="32" width="32" src="<?php echo get_template_directory_uri(); ?>/library/images/nothing.gif" />
         
         <?php printf(__( '<cite itemprop="author">%1$s</cite> %2$s', 'barebonestheme' ), get_comment_author_link(), edit_comment_link(__( '(Edit)', 'barebonestheme' ),'  ','') ) ?>
         <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time(__( 'F jS, Y', 'barebonestheme' )); ?> </a></time>
