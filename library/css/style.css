@@ -856,6 +856,7 @@ textarea:active,
 .field:focus,
 .field:active {
   background-color: #818181;
+  outline: none;
 }
 input[type="text"].error, input[type="text"].is-invalid,
 input[type="password"].error,
@@ -1089,6 +1090,7 @@ body {
   line-height: 1.5;
   color: black;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /********************

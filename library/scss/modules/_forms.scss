@@ -59,6 +59,7 @@ textarea,
   &:focus,
   &:active {
     background-color: lighten($gray, 4%);
+    outline: none; 
   } // end hover or focus
 
   // error notification

@@ -20,7 +20,7 @@
 */
 function updateViewportDimensions() {
 	var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-	return { width:x,height:y }
+	return { width:x,height:y };
 }
 // setting the viewport width
 var viewport = updateViewportDimensions();
@@ -50,6 +50,10 @@ var timeToWaitForLast = 100;
  * This is commented out so it won't work, but you can copy it and
  * remove the comments.
  *
+ * NOTE from: https://github.com/eddiemachado/bones/pull/709
+ * One more thing I think that should be mentioned, 
+ * is that the $(window).resize(function () { should be inside
+ * the jQuery(document).ready(function($) {. Otherwise it wont work.
  *
  *
  * If we want to only do it on a certain page, we can setup checks so we do it
@@ -65,6 +69,9 @@ var timeToWaitForLast = 100;
  *
  *    // if we're on the home page, we wait the set amount (in function above) then fire the function
  *    if( is_home ) { waitForFinalEvent( function() {
+ *     
+ *      // update the viewport, in case the window size has changed
+ *      viewport = updateViewportDimensions();
  *
  *      // if we're above or equal to 768 fire this off
  *      if( viewport.width >= 768 ) {
