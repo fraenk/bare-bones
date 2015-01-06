@@ -1168,6 +1168,14 @@ NAVIGATION STYLES
 /*********************
 GENERAL CONTENT STYLES
 *********************/
+main {
+  /*
+  image alignment on a screen this size may be
+  a bit difficult. It's set to start aligning
+  and floating images at the 768px breakpoint,
+  but it's up to you. Feel free to change it up.
+  */
+}
 main ul, main ol {
   list-style-position: inside;
 }
@@ -1192,7 +1200,18 @@ main ol ol {
 main ol ol ol {
   list-style-type: lower-roman;
 }
+main .alignleft,
+main .alignright,
+main .aligncenter,
+main .alignnone {
+  max-width: 100%;
+  display: block;
+  clear: both;
+}
 
+/*********************
+POSTS & CONTENT STYLES
+*********************/
 /*********************
 PAGE NAVI STYLES
 *********************/
@@ -1279,6 +1298,33 @@ you can add resource intensive styles.
   /*********************
   NAVIGATION STYLES
   *********************/
+  /*********************
+  GENERAL CONTENT STYLES
+  *********************/
+  main .alignleft {
+    margin: 1em 1em 1em 0;
+    display: inline;
+    float: left;
+  }
+  main .alignright {
+    margin: 1em 0 1em 1em;
+    display: inline;
+    float: right;
+  }
+  main .aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+  }
+  main .alignnone {
+    display: block;
+    clear: both;
+  }
+  main section, main footer, main header {
+    clear: both;
+  }
+
   /*********************
   SIDEBARS & ASIDES
   *********************/

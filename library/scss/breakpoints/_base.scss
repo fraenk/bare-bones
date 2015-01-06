@@ -115,6 +115,7 @@ NAVIGATION STYLES
 /*********************
 GENERAL CONTENT STYLES
 *********************/
+
 main {
   ul, ol {
     list-style-position: inside;
@@ -140,7 +141,27 @@ main {
       }
     }
   }
+  
+  /*
+  image alignment on a screen this size may be
+  a bit difficult. It's set to start aligning
+  and floating images at the 768px breakpoint,
+  but it's up to you. Feel free to change it up.
+  */
+  .alignleft,
+  .alignright,
+  .aligncenter,
+  .alignnone {
+    max-width: 100%;
+    display: block;
+    clear: both;
+  }
 }
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+
 
 /*********************
 PAGE NAVI STYLES

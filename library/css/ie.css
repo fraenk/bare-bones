@@ -201,6 +201,33 @@ HEADER STYLES
 NAVIGATION STYLES
 *********************/
 /*********************
+GENERAL CONTENT STYLES
+*********************/
+main .alignleft {
+  margin: 1em 1em 1em 0;
+  display: inline;
+  float: left;
+}
+main .alignright {
+  margin: 1em 0 1em 1em;
+  display: inline;
+  float: right;
+}
+main .aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both;
+}
+main .alignnone {
+  display: block;
+  clear: both;
+}
+main section, main footer, main header {
+  clear: both;
+}
+
+/*********************
 SIDEBARS & ASIDES
 *********************/
 /*********************

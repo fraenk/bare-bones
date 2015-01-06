@@ -34,6 +34,36 @@ NAVIGATION STYLES
 
 
 /*********************
+GENERAL CONTENT STYLES
+*********************/
+
+main {
+  .alignleft {
+    margin: 1em 1em 1em 0;
+    display: inline;
+    float: left;
+  }
+  .alignright {
+    margin: 1em 0 1em 1em;
+    display: inline;
+    float: right;
+  }
+  .aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+  }
+  .alignnone {
+    display: block;
+    clear: both;
+  }
+  section, footer, header {
+    clear: both;
+  }
+}
+
+/*********************
 SIDEBARS & ASIDES
 *********************/
 
