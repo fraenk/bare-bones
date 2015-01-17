@@ -144,4 +144,10 @@ function barebones_custom_admin_footer() {
 // adding it to the admin area
 add_filter( 'admin_footer_text', 'barebones_custom_admin_footer' );
 
+// load custom admin.css
+add_action( 'admin_enqueue_scripts', 'load_admin_style');
+function load_admin_style() {
+    wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/library/css/admin.css', false );
+}
+
 ?>
