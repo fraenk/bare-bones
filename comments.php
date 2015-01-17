@@ -26,7 +26,7 @@ if ( post_password_required() ) {
           'avatar_size'       => 40,
           'callback'          => 'barebones_comments',
           'type'              => 'all',
-          'reply_text'        => __('Reply', 'bonestheme'),
+          'reply_text'        => __('Reply', 'barebonestheme'),
           'page'              => '',
           'per_page'          => '',
           'reverse_top_level' => null,
