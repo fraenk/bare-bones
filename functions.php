@@ -248,4 +248,12 @@ function barebones_hidden_meta_boxes($hidden, $screen) {
 }
 add_filter('default_hidden_meta_boxes', 'barebones_hidden_meta_boxes', 10, 2);
 
+
+// Enable support for HTML5 markup.
+add_theme_support( 'html5', array(
+    'comment-list',
+    'search-form',
+    'comment-form'
+) );
+
 /* DON'T DELETE THIS CLOSING TAG */ ?>
