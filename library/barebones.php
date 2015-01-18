@@ -270,7 +270,7 @@ function barebones_page_navi() {
     return;
   echo '<nav class="pagination">';
   echo paginate_links( array(
-    'base'         => str_replace( $bignum, '%#%', esc_url( get_pagenum_link($bignum) ) ),
+    'base'         => str_replace( $bignum, '%#%', html_entity_decode( get_pagenum_link($bignum) ) ),
     'format'       => '',
     'current'      => max( 1, get_query_var('paged') ),
     'total'        => $wp_query->max_num_pages,
