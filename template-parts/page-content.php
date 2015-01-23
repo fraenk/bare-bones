@@ -4,7 +4,6 @@
 
         <h1 itemprop="headline"><?php the_title(); ?></h1>
 
-        
         <?php
             /*
              * pages are usually not so much concerned with author and publishing date...
@@ -12,7 +11,6 @@
             */
             //printf( __( '<p>Posted <time datetime="%1$s" itemprop="datePublished">%2$s</time> by <span itemprop="author">%3$s</span></p>', 'barebonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) ));
         ?>
-        
 
     </header> <?php // end article header ?>
 

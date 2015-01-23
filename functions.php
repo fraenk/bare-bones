@@ -42,6 +42,8 @@ function barebones_ahoy() {
   add_action( 'wp_head', 'barebones_remove_recent_comments_style', 1 );
   // clean up gallery output in wp
   add_filter( 'gallery_style', 'barebones_gallery_style' );
+  // remove hentry from post classes
+  add_filter( 'post_class','barebones_remove_hentry' );
 
   // enqueue base scripts and styles (see library/barebones.php for details)
   add_action( 'wp_enqueue_scripts', 'barebones_scripts_and_styles', 999 );

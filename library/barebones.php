@@ -89,6 +89,12 @@ function barebones_gallery_style($css) {
     return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
 }
 
+// remove hentry from post classes
+function barebones_remove_hentry( $classes ) {
+    $classes = array_diff($classes, array('hentry'));
+    return $classes;
+}
+
 /*********************
 IMPROVE WP FUNCTIONS
 *********************/
@@ -108,10 +114,12 @@ function rw_title( $title, $sep, $seplocation ) {
     $title = get_bloginfo( 'name' ) . $title;
   }
 
-  // Add the blog description for the home/front page.
+  // Add the blog description for the front page.
+  // uncomment " || is_home() " in the if clause below to show 
+  // blogdescription on the blog-list page even if it's
+  // not set as the front page (admin:settings->reading)
   $site_description = get_bloginfo( 'description', 'display' );
-
-  if ( $site_description && ( is_home() || is_front_page() ) ) {
+  if ( $site_description && ( is_front_page() /*|| is_home()*/ ) ) {
     $title .= " {$sep} {$site_description}";
   }
 
