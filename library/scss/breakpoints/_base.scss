@@ -11,59 +11,52 @@ and will be used across all viewports.
 
 ******************************************************************/
 
-/*********************
-GENERAL STYLES
-*********************/
-
-body {
-	font-family: $custom-font;
-	font-size: 100%;
-	line-height: 1.5;
-	color: $text-color;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/********************
+RESET SOME QUIRKS
+********************/
+// first p wraps site-title and may create a weirdo gap
+p, h1, h2, h3, h4, h5, ul, ol {
+  margin: 0;
 }
 
 /********************
-WORDPRESS BODY CLASSES
-style a page via class
+CLEARFIX
 ********************/
+//http://www.jqui.net/tips-tricks/css-clearfix/
+.clearfix:after { 
+  content: "\00A0";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix{
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix{
+  height: 1%;
+}
+.clearfix {
+  display: block
+}
 
-.rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
-.home {}                          /* home page */
-.blog {}                          /* blog template page */
-.archive {}                       /* archive page */
-.date {}                          /* date archive page */
-	.date-paged-1 {}                /* replace the number to the corresponding page number */
-.search {}                        /* search page */
-	.search-results {}              /* search result page */
-	.search-no-results {}           /* no results search page */
-	.search-paged-1 {}              /* individual paged search (i.e. body.search-paged-3) */
-.error404 {}                      /* 404 page */
-.single {}                        /* single post page */
-	.postid-1 {}                    /* individual post page by id (i.e. body.postid-73) */
-	.single-paged-1 {}              /* individual paged single (i.e. body.single-paged-3) */
-.attachment {}                    /* attatchment page */
-	.attachmentid-1 {}              /* individual attatchment page (i.e. body.attachmentid-763) */
-	.attachment-mime-type {}        /* style mime type pages */
-.author {}                        /* author page */
-	.author-nicename {}             /* user nicename (i.e. body.author-samueladams) */
-	.author-paged-1 {}              /* paged author archives (i.e. body.author-paged-4) for page 4 */
-.category {}                      /* category page */
-	.category-1 {}                  /* individual category page (i.e. body.category-6) */
-	.category-paged-1 {}            /* replace the number to the corresponding page number */
-.tag {}                           /* tag page */
-	.tag-slug {}                    /* individual tag page (i.e. body.tag-news) */
-	.tag-paged-1 {}                 /* replace the number to the corresponding page number */
-.page-template {}                 /* custom page template page */
-	.page-template-page-php {}      /* individual page template (i.e. body.page-template-contact-php */
-	.page-paged-1 {}                /* replace the number to the corresponding page number */
-	.page-parent {}                 /* parent page template */
-	.page-child {}                  /* child page template */
-	.parent-pageid-1 {}             /* replace the number to the corresponding page number */
-.logged-in {}                     /* if user is logged in */
-.paged {}                         /* paged items like search results or archives */
-	.paged-1 {}                     /* individual paged (i.e. body.paged-3) */
+
+/*********************
+BODY STYLES
+*********************/
+
+body {
+  font-family: $custom-font;
+  font-size: 100%;
+  line-height: 1.5;
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /*********************
 LINK STYLES
@@ -97,6 +90,7 @@ a, a:visited {
 H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 
+
 /*********************
 LAYOUT & GRID STYLES
 *********************/
@@ -113,7 +107,7 @@ NAVIGATION STYLES
 
 
 /*********************
-GENERAL CONTENT STYLES
+CONTENT STYLES
 *********************/
 
 main {
@@ -159,11 +153,6 @@ main {
 }
 
 /*********************
-POSTS & CONTENT STYLES
-*********************/
-
-
-/*********************
 PAGE NAVI STYLES
 *********************/
 
@@ -187,4 +176,45 @@ SIDEBARS & ASIDES
 FOOTER STYLES
 *********************/
 
+
+/********************
+WORDPRESS BODY CLASSES
+style a page via class
+********************/
+
+.rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
+.home {}                          /* home page */
+.blog {}                          /* blog template page */
+.archive {}                       /* archive page */
+.date {}                          /* date archive page */
+  .date-paged-1 {}                /* replace the number to the corresponding page number */
+.search {}                        /* search page */
+  .search-results {}              /* search result page */
+  .search-no-results {}           /* no results search page */
+  .search-paged-1 {}              /* individual paged search (i.e. body.search-paged-3) */
+.error404 {}                      /* 404 page */
+.single {}                        /* single post page */
+  .postid-1 {}                    /* individual post page by id (i.e. body.postid-73) */
+  .single-paged-1 {}              /* individual paged single (i.e. body.single-paged-3) */
+.attachment {}                    /* attatchment page */
+  .attachmentid-1 {}              /* individual attatchment page (i.e. body.attachmentid-763) */
+  .attachment-mime-type {}        /* style mime type pages */
+.author {}                        /* author page */
+  .author-nicename {}             /* user nicename (i.e. body.author-samueladams) */
+  .author-paged-1 {}              /* paged author archives (i.e. body.author-paged-4) for page 4 */
+.category {}                      /* category page */
+  .category-1 {}                  /* individual category page (i.e. body.category-6) */
+  .category-paged-1 {}            /* replace the number to the corresponding page number */
+.tag {}                           /* tag page */
+  .tag-slug {}                    /* individual tag page (i.e. body.tag-news) */
+  .tag-paged-1 {}                 /* replace the number to the corresponding page number */
+.page-template {}                 /* custom page template page */
+  .page-template-page-php {}      /* individual page template (i.e. body.page-template-contact-php */
+  .page-paged-1 {}                /* replace the number to the corresponding page number */
+  .page-parent {}                 /* parent page template */
+  .page-child {}                  /* child page template */
+  .parent-pageid-1 {}             /* replace the number to the corresponding page number */
+.logged-in {}                     /* if user is logged in */
+.paged {}                         /* paged items like search results or archives */
+  .paged-1 {}                     /* individual paged (i.e. body.paged-3) */
 
