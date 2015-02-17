@@ -1,42 +1,34 @@
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-    <div>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+	<main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
 
-		<div>
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		    
+		    <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
 
-			<div>
+		<?php endwhile; ?>
 
-					<main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+			<?php barebones_page_navi(); ?>
 
-						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						    
-						    <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
+		<?php else : ?>
 
-						<?php endwhile; ?>
+            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-							<?php barebones_page_navi(); ?>
-
-						<?php else : ?>
-
-                            <?php get_template_part( 'template-parts/missing-content' );  ?>
-
-						<?php endif; ?>
+		<?php endif; ?>
 
 
-					</main>
+	</main>
 
-				<?php get_sidebar(); ?>
+	<?php get_sidebar(); ?>
 
-			</div>
+    <?php get_footer(); ?>
 
-		</div>
+</body>
 
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
-
-<?php // div closed in footer.php ?>
+</html> <!-- end of site. what a ride! -->

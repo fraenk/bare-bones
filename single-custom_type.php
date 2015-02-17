@@ -15,59 +15,51 @@
 */
 ?>
 
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-    <div>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+    <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
 
-        <div>
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            <div>
+            <?php
+                /*
+                 * Ah, post formats. Nature's greatest mystery (aside from the sloth).
+                 *
+                 * So this function will bring in the needed template file depending on what the post
+                 * format is. The different post formats are located in the post-formats folder.
+                 *
+                 *
+                 * REMEMBER TO ALWAYS HAVE A DEFAULT ONE NAMED "format.php" FOR POSTS THAT AREN'T
+                 * A SPECIFIC POST FORMAT.
+                 *
+                 * If you want to remove post formats, just delete the post-formats folder and
+                 * replace the function below with the contents of the "format.php" file.
+                */
+                get_template_part( 'post-formats/format', get_post_format() );
+            ?>
 
-                <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+        <?php endwhile; ?>
 
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <?php else : ?>
 
-                        <?php
-                            /*
-                             * Ah, post formats. Nature's greatest mystery (aside from the sloth).
-                             *
-                             * So this function will bring in the needed template file depending on what the post
-                             * format is. The different post formats are located in the post-formats folder.
-                             *
-                             *
-                             * REMEMBER TO ALWAYS HAVE A DEFAULT ONE NAMED "format.php" FOR POSTS THAT AREN'T
-                             * A SPECIFIC POST FORMAT.
-                             *
-                             * If you want to remove post formats, just delete the post-formats folder and
-                             * replace the function below with the contents of the "format.php" file.
-                            */
-                            get_template_part( 'post-formats/format', get_post_format() );
-                        ?>
+            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-                    <?php endwhile; ?>
+        <?php endif; ?>
 
-                    <?php else : ?>
+    </main>
 
-                        <?php get_template_part( 'template-parts/missing-content' );  ?>
+    <?php get_sidebar(); ?>
 
-                    <?php endif; ?>
+    <?php get_footer(); ?>
 
-                </main>
+</body>
 
-                <?php get_sidebar(); ?>
-
-            </div>
-
-        </div>
-
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
-
-<?php // div closed in footer.php ?>
+</html> <!-- end of site. what a ride! -->
 
 

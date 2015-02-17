@@ -12,66 +12,53 @@
 */
 ?>
 
+<!doctype html>
+
 <?php get_header(); ?>
 
-			<div id="content">
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-				<div id="inner-content" class="wrap cf">
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-						<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+    <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
 
-							<h1 class="archive-title h2"><span><?php _e( 'Posts Categorized:', 'barebonestheme' ); ?></span> <?php single_cat_title(); ?></h1>
+		<h1 class="archive-title h2"><span><?php _e( 'Posts Categorized:', 'barebonestheme' ); ?></span> <?php single_cat_title(); ?></h1>
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+            <?php
+                /*
+                 * Ah, post formats. Nature's greatest mystery (aside from the sloth).
+                 *
+                 * So this function will bring in the needed template file depending on what the post
+                 * format is. The different post formats are located in the post-formats folder.
+                 *
+                 *
+                 * REMEMBER TO ALWAYS HAVE A DEFAULT ONE NAMED "format.php" FOR POSTS THAT AREN'T
+                 * A SPECIFIC POST FORMAT.
+                 *
+                 * If you want to remove post formats, just delete the post-formats folder and
+                 * replace the function below with the contents of the "format.php" file.
+                */
+                get_template_part( 'post-formats/format', get_post_format() );
+            ?>
 
-								<header class="article-header">
+		<?php endwhile; ?>
 
-									<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-									<p class="byline vcard"><?php
-										printf(__('Posted <time class="updated" datetime="%1$s" itemprop="datePublished">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&</span> filed under %4$s.', 'barebonestheme'), get_the_time('Y-m-j'), get_the_time(__('F jS, Y', 'barebonestheme')), barebones_get_the_author_posts_link(), get_the_term_list( get_the_ID(), 'custom_cat', "", ", ", "" ));
-									?></p>
+				<?php barebones_page_navi(); ?>
 
-								</header>
+		<?php else : ?>
 
-								<section class="entry-content">
-									<?php the_excerpt( '<span class="read-more">' . __( 'Read More &raquo;', 'barebonestheme' ) . '</span>' ); ?>
+            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-								</section>
+		<?php endif; ?>
 
-								<footer class="article-footer">
+	</main>
 
-								</footer>
+    <?php get_sidebar(); ?>
 
-							</article>
+    <?php get_footer(); ?>
 
-							<?php endwhile; ?>
+</body>
 
-									<?php barebones_page_navi(); ?>
-
-							<?php else : ?>
-
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Oops, Post Not Found!', 'barebonestheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'barebonestheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the taxonomy-custom_cat.php template.', 'barebonestheme' ); ?></p>
-										</footer>
-									</article>
-
-							<?php endif; ?>
-
-						</main>
-
-						<?php get_sidebar(); ?>
-
-				</div>
-
-			</div>
-
-<?php get_footer(); ?>
+</html> <!-- end of site. what a ride! -->

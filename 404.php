@@ -1,55 +1,48 @@
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-    <div>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+    <main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
 
-        <div>
+		<article>
 
-            <div>
+			<header>
 
-                    <main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
+				<h1><?php _e( 'Epic 404 - Article Not Found', 'barebonestheme' ); ?></h1>
 
-						<article>
+			</header>
 
-							<header>
+			<section>
 
-								<h1><?php _e( 'Epic 404 - Article Not Found', 'barebonestheme' ); ?></h1>
+				<p><?php _e( 'The article you were looking for was not found, but maybe try looking again!', 'barebonestheme' ); ?></p>
 
-							</header>
+			</section>
 
-							<section>
+			<section>
 
-								<p><?php _e( 'The article you were looking for was not found, but maybe try looking again!', 'barebonestheme' ); ?></p>
+					<p><?php get_search_form(); ?></p>
 
-							</section>
+			</section>
 
-							<section>
+			<footer>
 
-									<p><?php get_search_form(); ?></p>
+					<p><?php _e( 'This is the 404.php template.', 'barebonestheme' ); ?></p>
 
-							</section>
+			</footer>
 
-							<footer>
+		</article>
 
-									<p><?php _e( 'This is the 404.php template.', 'barebonestheme' ); ?></p>
+	</main>
 
-							</footer>
+    <?php get_sidebar(); ?>
 
-						</article>
+    <?php get_footer(); ?>
 
-					</main>
+</body>
 
-                    <?php get_sidebar(); ?>
+</html> <!-- end of site. what a ride! -->
 
-            </div>
-
-        </div>
-
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
-
-<?php // div closed in footer.php ?>

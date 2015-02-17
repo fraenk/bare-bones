@@ -15,65 +15,53 @@
 */
 ?>
 
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-    
-    <div>
         
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <div>
+    <main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
 
-            <div>
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                <main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
-
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-                        
-                        <?php
-                            // first display the page content itself
-                            get_template_part( 'template-parts/page-content' );
-                            // now query for child-pages
-                            $parentPostID = get_the_ID();
-                            $args = array(
-                                'post_type' => 'page',
-                                'post_parent' => $parentPostID,
-                                'orderby' => 'menu_order',
-                                'order' => 'ASC',
-                            );
-                            $child_pages = new WP_Query( $args );
-                            // and display all child pages
-                            if( $child_pages->have_posts() ):
-                                while ( $child_pages->have_posts() ) : $child_pages->the_post();
-                                    get_template_part( 'template-parts/page-content' );
-                                endwhile;
-                            endif;
-                            // finally reset the post-data to finish rendering in the parentpage's context
-                            wp_reset_postdata();
-                        ?>
-
-                    <?php endwhile; else : ?>
-
-                        <?php get_template_part( 'template-parts/missing-content' );  ?>
-
-                    <?php endif; ?>
-
-                </main>
-
-            </div>
             
-            <div>
-                
-                <?php get_sidebar(); ?>
-                
-            </div>
+            <?php
+                // first display the page content itself
+                get_template_part( 'template-parts/page-content' );
+                // now query for child-pages
+                $parentPostID = get_the_ID();
+                $args = array(
+                    'post_type' => 'page',
+                    'post_parent' => $parentPostID,
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                );
+                $child_pages = new WP_Query( $args );
+                // and display all child pages
+                if( $child_pages->have_posts() ):
+                    while ( $child_pages->have_posts() ) : $child_pages->the_post();
+                        get_template_part( 'template-parts/page-content' );
+                    endwhile;
+                endif;
+                // finally reset the post-data to finish rendering in the parentpage's context
+                wp_reset_postdata();
+            ?>
 
-        </div>
+        <?php endwhile; else : ?>
 
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
+            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-<?php // div closed in footer.php ?>
+        <?php endif; ?>
+
+    </main>
+    
+    <?php get_sidebar(); ?>
+
+    <?php get_footer(); ?>
+
+</body>
+
+</html> <!-- end of site. what a ride! -->

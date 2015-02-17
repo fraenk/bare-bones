@@ -1,37 +1,29 @@
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-    <div>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+	<main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
 
-		<div>
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-			<div>
+		    <?php get_template_part( 'template-parts/page-content' );  ?>
 
-					<main role="main" itemprop="mainContentOfPage"> <?php //itemscope itemtype="http://schema.org/WebPageElement" ?!? ?>
+		<?php endwhile; else : ?>
 
-						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<?php get_template_part( 'template-parts/missing-content' );  ?>
 
-						    <?php get_template_part( 'template-parts/page-content' );  ?>
+		<?php endif; ?>
 
-						<?php endwhile; else : ?>
+	</main>
 
-							<?php get_template_part( 'template-parts/missing-content' );  ?>
+	<?php get_sidebar(); ?>
 
-						<?php endif; ?>
+    <?php get_footer(); ?>
 
-					</main>
+</body>
 
-					<?php get_sidebar(); ?>
-
-			</div>
-
-		</div>
-
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
-
-<?php // div closed in footer.php ?>
+</html> <!-- end of site. what a ride! -->

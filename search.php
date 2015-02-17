@@ -1,43 +1,35 @@
+<!doctype html>
+
 <?php get_header(); ?>
 
 <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-    <div>
+    <?php get_template_part( 'template-parts/site-header' );  ?>
 
-        <?php get_template_part( 'template-parts/site-header' );  ?>
+    <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+	    
+		<h1><span><?php _e( 'Search Results for:', 'barebonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-        <div>
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            
+            <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
 
-            <div>
+        <?php endwhile; ?>
 
-                <main role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-				    
-					<h1><span><?php _e( 'Search Results for:', 'barebonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
+            <?php barebones_page_navi(); ?>
 
-				        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            
-                            <?php get_template_part( 'post-formats/format', get_post_format() );  ?>
+        <?php else : ?>
 
-                        <?php endwhile; ?>
+            <?php get_template_part( 'template-parts/missing-content' );  ?>
 
-                            <?php barebones_page_navi(); ?>
+        <?php endif; ?>
 
-                        <?php else : ?>
+	</main>
 
-                            <?php get_template_part( 'template-parts/missing-content' );  ?>
+	<?php get_sidebar(); ?>
 
-                        <?php endif; ?>
+    <?php get_footer(); ?>
 
-					</main>
+</body>
 
-						<?php get_sidebar(); ?>
-
-				</div>
-
-		</div>
-
-        <?php get_footer(); ?>
-        
-    <?php // div closed in footer.php ?>
-
-<?php // div closed in footer.php ?>
+</html> <!-- end of site. what a ride! -->
